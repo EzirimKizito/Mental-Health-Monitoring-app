@@ -54,8 +54,17 @@ def main():
     
     st.markdown("#### PROJECT WORK BY: FUNSHO VICTOR EVOPA")
 
+        # Define the HTML for background image
+    background_image_style = """
+    <style>
+    .stApp {
+        background-image: url("https://images.app.goo.gl/s57mAZexURc3fPur6");
+        background-size: cover;
+    }
+    </style>
+    """
 
-    
+    st.markdown(background_image_style, unsafe_allow_html=True)
 
     # Sidebar for navigation
     app_mode = st.sidebar.selectbox(
@@ -65,7 +74,7 @@ def main():
 
    
         # User input section
-    st.subheader(" ** User Input Parameters**")
+    st.subheader(" User Input Parameters")
     input_data = []
     cols = st.columns(2)  # Create two columns
     col_index = 0  # Initialize column index
