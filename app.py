@@ -65,7 +65,7 @@ def main():
 
    
         # User input section
-    st.subheader("User Input Parameters")
+    st.subheader(" ## User Input Parameters")
     input_data = []
     cols = st.columns(2)  # Create two columns
     col_index = 0  # Initialize column index
