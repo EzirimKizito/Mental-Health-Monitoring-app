@@ -119,19 +119,17 @@ def main():
     }
 
  
+  
     # Generate UI elements for each feature and collect user input
-    for feature, options in features.items():
+    for index, (feature, options) in enumerate(features.items()):
         with cols[col_index]:
-            st.markdown(f"**{feature}**")  # Smaller and bold text for feature name
             if isinstance(options, tuple):  # If the options is a tuple, it represents a range
-                value = st.number_input(f"{feature} (Range: {options[0]}-{options[1]})", min_value=options[0], max_value=options[1])
+                value = st.number_input(f"{feature} (Range: {options[0]}-{options[1]})", min_value=options[0], max_value=options[1], key=f"input_{index}")
                 input_data.append(value)
             elif isinstance(options, list):
-                selected_option = st.selectbox('', options)
+                selected_option = st.selectbox(f'Select {feature}', options, key=f"input_{index}")
                 encoded_value = transform_input(feature, selected_option)
                 input_data.append(encoded_value)
-            else:
-                st.error("Error in feature configuration.")
             col_index = (col_index + 1) % 2  # Alternate columns
 
     if st.button("Predict"):
