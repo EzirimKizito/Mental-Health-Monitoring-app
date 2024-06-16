@@ -115,22 +115,21 @@ def main():
         'Awareness of financial support resources': ['No', 'Yes']
     }
 
-    # Handling multiple columns
-    col_indices = list(features.keys())
-    num_cols = 3  # Define number of columns per row
-    col_handlers = [st.columns(num_cols) for _ in range((len(col_indices) + num_cols - 1) // num_cols)]  # List of column sets
-
-    for index, feature in enumerate(col_indices):
-        col = col_handlers[index // num_cols][index % num_cols]  # Determine which column to use
-        options = features[feature]
-        if isinstance(options, tuple):  # If the options is a tuple, it represents a range
-            input_data.append(col.number_input(f'{feature} (Range: {options[0]}-{options[1]})', min_value=options[0], max_value=options[1]))
-        elif isinstance(options, list):
-            selected_option = col.selectbox(f'Select {feature}', options)
-            encoded_value = transform_input(feature, selected_option)
-            input_data.append(encoded_value)
-        else:
-            col.error("Error in feature configuration.")
+   # Generate UI elements for each feature and collect user input
+    col_index = 0
+    cols = st.columns(2)  # Two columns per row
+    for feature, options in features.items():
+        with cols[col_index]:
+            st.markdown(f"**{feature}**")  # Smaller font for feature name
+            if isinstance(options, tuple):  # If the options is a tuple, it represents a range
+                input_data.append(st.number_input('', min_value=options[0], max_value=options[1], label=f"{feature} (Range: {options[0]}-{options[1]})"))
+            elif isinstance(options, list):
+                selected_option = st.selectbox('', options)
+                encoded_value = transform_input(feature, selected_option)
+                input_data.append(encoded_value)
+            else:
+                st.error("Error in feature configuration.")
+            col_index = (col_index + 1) % 2  # Switch columns
 
     if st.button("Predict"):
         if None not in input_data:  # Ensure no invalid inputs
