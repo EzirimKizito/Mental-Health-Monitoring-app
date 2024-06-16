@@ -60,9 +60,12 @@ def main():
         ["Mental Health Score Prediction", "Mental Stability Prediction"]
     )
 
-    # User input section
+   
+        # User input section
     st.subheader("User Input Parameters")
     input_data = []
+    cols = st.columns(2)  # Create two columns
+    col_index = 0  # Initialize column index
 
     # Define features and options for user input
     features = {
@@ -115,21 +118,21 @@ def main():
         'Awareness of financial support resources': ['No', 'Yes']
     }
 
-   # Generate UI elements for each feature and collect user input
-    col_index = 0
-    cols = st.columns(2)  # Two columns per row
+ 
+    # Generate UI elements for each feature and collect user input
     for feature, options in features.items():
         with cols[col_index]:
-            st.markdown(f"**{feature}**")  # Smaller font for feature name
+            st.markdown(f"**{feature}**")  # Smaller and bold text for feature name
             if isinstance(options, tuple):  # If the options is a tuple, it represents a range
-                input_data.append(st.number_input('', min_value=options[0], max_value=options[1], label=f"{feature} (Range: {options[0]}-{options[1]})"))
+                value = st.number_input(f"{feature} (Range: {options[0]}-{options[1]})", min_value=options[0], max_value=options[1])
+                input_data.append(value)
             elif isinstance(options, list):
                 selected_option = st.selectbox('', options)
                 encoded_value = transform_input(feature, selected_option)
                 input_data.append(encoded_value)
             else:
                 st.error("Error in feature configuration.")
-            col_index = (col_index + 1) % 2  # Switch columns
+            col_index = (col_index + 1) % 2  # Alternate columns
 
     if st.button("Predict"):
         if None not in input_data:  # Ensure no invalid inputs
