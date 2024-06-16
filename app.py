@@ -52,7 +52,7 @@ def predict_mental_stability(input_data):
 def main():
     st.title("MENTAL HEALTH PREDICTION SYSTEM")
     
-    st.markdown("# *PROJECT WORK BY: FUNSHO VICTOR EVOPA*")
+    st.markdown("# ***PROJECT WORK BY: FUNSHO VICTOR EVOPA***")
 
     
 
