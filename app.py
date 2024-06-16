@@ -58,7 +58,7 @@ def main():
     background_image_style = """
     <style>
     .stApp {
-        background-image: url("https://images.app.goo.gl/s57mAZexURc3fPur6");
+        background-image: url("https://pixabay.com/photos/self-care-self-care-self-reliance-4899284/");
         background-size: cover;
     }
     </style>
