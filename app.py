@@ -50,9 +50,11 @@ def predict_mental_stability(input_data):
 
 
 def main():
-    st.markdown("# by FUNSHO VICTOR EVOPA")
+    st.title("MENTAL HEALTH PREDICTION SYSTEM")
+    
+    st.markdown("# *PROJECT WORK BY: FUNSHO VICTOR EVOPA*")
 
-    st.title("Mental Health Prediction System")
+    
 
     # Sidebar for navigation
     app_mode = st.sidebar.selectbox(
