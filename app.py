@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-
+import joblib
 
 # Load models
-model_regress = pickle.load('model_regress.pkl')
-model_classif = pickle.load('model_classif.pkl')
+model_regress = joblib.load('model_regress.pkl')
+model_classif = joblib.load('model_classif.pkl')
 
 # Load all encoders
 with open('all_label_encoders.pkl', 'rb') as file:
