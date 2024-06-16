@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-import joblib
+
 
 # Load models
 model_regress = joblib.load('model_regress.pkl')
